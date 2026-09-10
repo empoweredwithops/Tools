@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Save to Knowledge Repository</title>
+  <link rel="stylesheet" href="save.css" />
+</head>
+<body>
+  <h1>Save to Knowledge Repository</h1>
+
+  <div class="row" id="folder-row">
+    <div>
+      Folder: <strong id="folder-name">not set</strong>
+    </div>
+    <button id="choose-folder">Choose folder…</button>
+  </div>
+
+  <label for="title-input">Document title</label>
+  <input id="title-input" type="text" placeholder="Document title" />
+
+  <div class="meta">Source: <span id="source-url"></span></div>
+
+  <label for="preview">Selected text</label>
+  <textarea id="preview" readonly></textarea>
+
+  <div id="filename-conflict" class="conflict" hidden>
+    <p id="conflict-msg"></p>
+    <label for="new-filename">New filename</label>
+    <input id="new-filename" type="text" placeholder="new-filename.md" />
+  </div>
+
+  <div id="status" class="status"></div>
+
+  <button id="save-btn" class="primary">Save</button>
+
+  <script src="save.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Save to Knowledge Repository",
+  "version": "1.0.0",
+  "description": "Right-click selected text on any page and save it as a Markdown note in your local AI Knowledge Repository.",
+  "permissions": ["contextMenus", "storage", "activeTab"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

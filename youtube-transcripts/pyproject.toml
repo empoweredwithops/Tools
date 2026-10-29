@@ -1,0 +1,27 @@
+[project]
+name = "yt-transcript"
+version = "0.1.0"
+description = "Save YouTube transcripts as Markdown files for a knowledge base."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "yt-dlp>=2025.10.22",
+    # YouTube JS challenge solver; audio URLs return 403 without it.
+    "yt-dlp-ejs>=0.8.0",
+    "mlx-whisper>=0.4.2; sys_platform == 'darwin' and platform_machine == 'arm64'",
+]
+
+[project.optional-dependencies]
+# Whisper fallback for machines that aren't Apple Silicon.
+# PyAV 19 removed an argument faster-whisper 1.2.1 still passes to av.open().
+cpu = ["faster-whisper>=1.1.0", "av>=11,<19"]
+
+[project.scripts]
+yt-transcript = "yt_transcript.cli:main"
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

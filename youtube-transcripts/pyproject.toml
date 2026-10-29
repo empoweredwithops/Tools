@@ -1,0 +1,24 @@
+[project]
+name = "yt-transcript"
+version = "0.1.0"
+description = "Save YouTube transcripts as Markdown files for a knowledge base."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "yt-dlp>=2025.10.22",
+    "mlx-whisper>=0.4.2; sys_platform == 'darwin' and platform_machine == 'arm64'",
+]
+
+[project.optional-dependencies]
+# Whisper fallback for machines that aren't Apple Silicon.
+cpu = ["faster-whisper>=1.1.0"]
+
+[project.scripts]
+yt-transcript = "yt_transcript.cli:main"
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

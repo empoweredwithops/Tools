@@ -11,8 +11,25 @@ MANUAL_LANG_PREFS = ["en", "en-US", "en-GB"]
 AUTO_LANG_PREFS = ["en-orig", "en"]
 
 
+class _SilentLogger:
+    """yt-dlp prints errors itself even when quiet; the CLI reports them instead."""
+
+    def debug(self, msg):
+        pass
+
+    info = warning = error = debug
+
+
 def _ydl(**opts) -> yt_dlp.YoutubeDL:
-    base = {"quiet": True, "no_warnings": True, "noprogress": True}
+    base = {
+        "quiet": True,
+        "no_warnings": True,
+        "noprogress": True,
+        "logger": _SilentLogger(),
+        # YouTube's stream URLs need a JS runtime to unlock. yt-dlp only
+        # looks for deno by default; accept node or bun too.
+        "js_runtimes": {"deno": {}, "node": {}, "bun": {}},
+    }
     base.update(opts)
     return yt_dlp.YoutubeDL(base)
 

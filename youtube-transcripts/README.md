@@ -12,7 +12,7 @@ You need [uv](https://docs.astral.sh/uv/) and ffmpeg:
 brew install uv ffmpeg deno
 ```
 
-deno isn't strictly required, but yt-dlp now uses it to read YouTube's player code. Without it, some audio formats can go missing.
+deno (or node, if you already have it) is needed for the Whisper path. YouTube's audio URLs return 403 Forbidden unless yt-dlp can run YouTube's player code, and it needs a JavaScript runtime for that. Captions work without one.
 
 Then, from this folder:
 

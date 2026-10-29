@@ -176,3 +176,9 @@ def test_frontmatter_quotes_values_safely():
     assert "transcript_source: manual_captions" in md
     assert md.endswith("Body.\n")
     assert format_duration(65) == "1:05"
+
+
+def test_empty_transcript_gets_a_note():
+    info = {"id": "abc123", "title": "Music only"}
+    md = render_markdown(info, "https://www.youtube.com/watch?v=abc123", "whisper", "")
+    assert md.endswith("# Music only\n\n_No speech found in this video._\n")

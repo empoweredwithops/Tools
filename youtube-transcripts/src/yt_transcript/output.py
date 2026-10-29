@@ -9,6 +9,7 @@ import unicodedata
 from pathlib import Path
 
 MAX_SLUG_LENGTH = 80
+NO_SPEECH_NOTE = "_No speech found in this video._"
 
 
 def slugify(title: str) -> str:
@@ -62,4 +63,5 @@ def render_markdown(info: dict, url: str, source: str, body: str) -> str:
     ]
     frontmatter = "\n".join(f"{key}: {value}" for key, value in fields)
     title = info.get("title") or info["id"]
+    body = body.strip() or NO_SPEECH_NOTE
     return f"---\n{frontmatter}\n---\n\n# {title}\n\n{body}\n"
